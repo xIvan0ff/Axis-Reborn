@@ -6,12 +6,12 @@ $ip = $_GET['host'];
 
 if ($ip != NULL && $filter_var($ip, FILTER_VALIDATE_IP) !== false) {
     $resp = file_get_contents("http://ip-api.com/json/$ip?fields=520191&lang=en");
-    $resp = str_replace('{', "", $resp);
-    $resp = str_replace('}', "", $resp);
-    $resp = str_replace('"', "", $resp);
+    $resp = str_replace('{', '', $resp);
+    $resp = str_replace('}', '', $resp);
+    $resp = str_replace('"', '', $resp);
     $resp = str_replace(':', ': ', $resp);
     $resp = str_replace(",", "\r\n", $resp);
-    $resp = str_replace("\r\nstatus: success", "", $resp);
+    $resp = str_replace("\r\nstatus: success", '', $resp);
     echo $resp;
     //echo "IP -> $ip";
 } else {
