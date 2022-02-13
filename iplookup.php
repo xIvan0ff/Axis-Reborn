@@ -4,7 +4,7 @@
 
 $ip = $_GET['host'];
 
-if($ip != NULL && $ip >= 8)
+if($ip != NULL && $filter_var($ip, FILTER_VALIDATE_IP) !== false)
 {
     $resp = file_get_contents("http://ip-api.com/json/$ip?fields=520191&lang=en");
     $resp = str_replace('{', NULL, $resp);
@@ -18,7 +18,5 @@ if($ip != NULL && $ip >= 8)
 }
 else
 {
-    echo "[IPLookup-API] Syntax Error, Example: http://1.1.1.1/api.php?ip=1.3.3.7";
+    echo "[IPLookup-API] Syntax Error, Example: http://1.1.1.1/iplookup.php?host=1.3.3.7";
 }
-
-?>
