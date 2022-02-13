@@ -222,7 +222,7 @@ int Search_in_File(char *str)
     int line_num = 0;
     int find_result = 0, fnd = 0;
     char temp[1024];
-    if ((fp = fopen(DB, "RR")) == NULL)
+    if ((fp = fopen(DB, "r")) == NULL)
     {
         return (-1);
     }
@@ -671,7 +671,7 @@ void *TelWorker(void *arguments)
     FILE *fp;
     int i = 0;
     int c;
-    fp = fopen(DB, "RR");
+    fp = fopen(DB, "r");
     while (!feof(fp))
     {
         c = fgetc(fp);
