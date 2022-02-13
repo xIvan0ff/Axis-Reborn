@@ -64,7 +64,7 @@ int main(int argc, char **argv)
             char CHP[2048];
             sprintf(CHP, "/root/Loader/%s", TARG);
             FILE *check;
-            if ((check = fopen(CHP, "RR")) == NULL)
+            if ((check = fopen(CHP, "r")) == NULL)
             {
                 printf("\x1b[31mError: No File Named '%s', Exiting Now...\x1b[0m\r\n", TARG);
                 exit(0);
