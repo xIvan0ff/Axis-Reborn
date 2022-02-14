@@ -1051,7 +1051,7 @@ wait:
             int targ_black = 0;
             char *line = NULL;
             size_t n = 0;
-            FILE *f = fopen("" LFD "/BLACK.lst", "RR");
+            FILE *f = fopen("" LFD "/BLACK.lst", "r");
             while (getline(&line, &n, f) != -1)
             {
                 if (strstr(line, input_argv[2]) != NULL)
