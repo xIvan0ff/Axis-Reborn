@@ -285,7 +285,7 @@ class sshscanner(threading.Thread):
                     if True == dobreak:
                         break
                 badserver = True
-                stdin, stdout, stderr = ssh.exec_command("/sbin/ifconfig")
+                stdin, stdout, stderr = ssh.exec_command("/sbin/ip address")
                 output = stdout.read()
                 if "inet" in output:
                     badserver = False
